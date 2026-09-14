@@ -1,1 +1,241 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Handoff — Found it? We'll get it.</title>
+<meta name="description" content="Westside Marketplace pickup for small items. Quote in minutes. Venice, MDR, Santa Monica, Culver, West LA, WeHo."/>
+<style>
+  :root {
+    --ink: #0B0D12;
+    --ink-2: #141821;
+    --cobalt: #2F5BFF;
+    --cobalt-2: #4B73FF;
+    --white: #FFFFFF;
+    --mute: #9AA3B5;
+    --line: #222837;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    background: var(--ink);
+    color: var(--white);
+    line-height: 1.45;
+  }
+  a { color: var(--cobalt-2); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 28px 20px 80px; }
+  header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; }
+  .logo { font-weight: 700; letter-spacing: -0.03em; font-size: 20px; }
+  .logo span { color: var(--cobalt); }
+  .pill {
+    font-size: 12px; color: var(--mute); border: 1px solid var(--line);
+    padding: 6px 10px; border-radius: 999px;
+  }
+  .hero { display: grid; gap: 28px; margin-bottom: 40px; }
+  @media (min-width: 860px) {
+    .hero { grid-template-columns: 1.05fr 0.95fr; align-items: start; gap: 40px; }
+  }
+  h1 {
+    font-size: clamp(36px, 6vw, 56px);
+    line-height: 1.02; letter-spacing: -0.04em; margin: 0 0 14px;
+  }
+  .sub { color: var(--mute); font-size: 18px; margin: 0 0 22px; max-width: 34ch; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .tag {
+    background: var(--ink-2); border: 1px solid var(--line);
+    color: var(--white); font-size: 12px; padding: 6px 10px; border-radius: 999px;
+  }
+  .steps { display: grid; gap: 10px; color: var(--mute); font-size: 14px; }
+  .steps strong { color: var(--white); }
+  .card {
+    background: linear-gradient(180deg, #151a26 0%, #10141d 100%);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  }
+  .card h2 { margin: 0 0 6px; font-size: 18px; letter-spacing: -0.02em; }
+  .card p.lead { margin: 0 0 18px; color: var(--mute); font-size: 13px; }
+  label { display: block; font-size: 12px; color: var(--mute); margin: 12px 0 6px; }
+  input, select, textarea {
+    width: 100%;
+    background: var(--ink);
+    border: 1px solid var(--line);
+    color: var(--white);
+    border-radius: 12px;
+    padding: 12px 12px;
+    font: inherit;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: 2px solid rgba(47,91,255,.45);
+    border-color: var(--cobalt);
+  }
+  .row { display: grid; gap: 12px; }
+  @media (min-width: 560px) { .row.two { grid-template-columns: 1fr 1fr; } }
+  .btn {
+    margin-top: 18px; width: 100%;
+    background: var(--cobalt); color: white; border: 0;
+    border-radius: 14px; padding: 14px 16px;
+    font-weight: 650; font-size: 15px; cursor: pointer;
+  }
+  .btn:hover { background: var(--cobalt-2); }
+  .btn:disabled { opacity: .55; cursor: wait; }
+  .fine { margin-top: 12px; color: var(--mute); font-size: 12px; }
+  .ok, .err {
+    display: none; margin-top: 14px; padding: 12px; border-radius: 12px; font-size: 14px;
+  }
+  .ok { background: rgba(47,91,255,.15); border: 1px solid rgba(47,91,255,.4); }
+  .err { background: rgba(255,80,80,.12); border: 1px solid rgba(255,80,80,.35); }
+  footer { margin-top: 56px; color: var(--mute); font-size: 12px; border-top: 1px solid var(--line); padding-top: 18px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Hand<span>off</span></div>
+      <div class="pill">Westside · Small only</div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>Found it?<br/>We'll get it.</h1>
+        <p class="sub">Marketplace pickup for small stuff that fits a sedan or hatch. You buy it. We bring it.</p>
+        <div class="tags">
+          <span class="tag">Venice</span>
+          <span class="tag">Marina del Rey</span>
+          <span class="tag">Santa Monica</span>
+          <span class="tag">Culver City</span>
+          <span class="tag">West LA</span>
+          <span class="tag">WeHo</span>
+        </div>
+        <div class="steps">
+          <div><strong>1.</strong> Paste the listing and your ZIPs</div>
+          <div><strong>2.</strong> We text a quote (usually under an hour daytime)</div>
+          <div><strong>3.</strong> Pay the link. We pick up from the seller and drop it off</div>
+        </div>
+      </div>
+
+      <div class="card" id="quote">
+        <h2>Get a quote</h2>
+        <p class="lead">Small items only: nightstand, chair, small table, bike, hatchback-sized. No couches or dressers this week.</p>
+        <form id="quote-form">
+          <label for="name">First name *</label>
+          <input id="name" name="name" required autocomplete="given-name"/>
+
+          <label for="phone">Phone (for quote text) *</label>
+          <input id="phone" name="phone" type="tel" required placeholder="310…" autocomplete="tel"/>
+
+          <label for="listing">Marketplace listing URL *</label>
+          <input id="listing" name="listing_url" type="url" required placeholder="https://facebook.com/marketplace/…"/>
+
+          <div class="row two">
+            <div>
+              <label for="pickup_zip">Pickup ZIP *</label>
+              <input id="pickup_zip" name="pickup_zip" required pattern="[0-9]{5}" maxlength="5"/>
+            </div>
+            <div>
+              <label for="delivery_zip">Delivery ZIP *</label>
+              <input id="delivery_zip" name="delivery_zip" required pattern="[0-9]{5}" maxlength="5"/>
+            </div>
+          </div>
+
+          <label for="item_type">Item type *</label>
+          <select id="item_type" name="item_type" required>
+            <option value="">Select…</option>
+            <option>Nightstand</option>
+            <option>Chair</option>
+            <option>Small table</option>
+            <option>Bike or sports</option>
+            <option>Boxes or misc</option>
+            <option>Other small (must fit a sedan/hatch)</option>
+          </select>
+
+          <label for="description">Short description *</label>
+          <input id="description" name="description" required placeholder="Color, brand, anything awkward"/>
+
+          <label for="photos">Photo links *</label>
+          <input id="photos" name="photo_links" required placeholder="Listing screenshots or Drive / iCloud links"/>
+
+          <label for="dims">Approx dimensions *</label>
+          <input id="dims" name="dims" required placeholder="L x W x H inches, or unsure"/>
+
+          <div class="row two">
+            <div>
+              <label for="stairs_pickup">Stairs at pickup *</label>
+              <select id="stairs_pickup" name="stairs_pickup" required>
+                <option value="">Select…</option>
+                <option>None</option>
+                <option>Elevator</option>
+                <option>1 flight</option>
+                <option>2+ flights</option>
+              </select>
+            </div>
+            <div>
+              <label for="stairs_delivery">Stairs at delivery *</label>
+              <select id="stairs_delivery" name="stairs_delivery" required>
+                <option value="">Select…</option>
+                <option>None</option>
+                <option>Elevator</option>
+                <option>1 flight</option>
+                <option>2+ flights</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="window">Preferred window *</label>
+          <select id="window" name="window" required>
+            <option value="">Select…</option>
+            <option>Today AM</option>
+            <option>Today PM</option>
+            <option>Tomorrow AM</option>
+            <option>Tomorrow PM</option>
+            <option>Flexible</option>
+          </select>
+
+          <label for="notes">Notes</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Gate codes, seller only free after 6…"></textarea>
+
+          <button class="btn" type="submit" id="submit">Request quote</button>
+          <p class="fine">We'll text you. Pay before we dispatch. From: handoff@agentmail.to</p>
+          <div class="ok" id="ok">Got it. Watch your phone for a quote.</div>
+          <div class="err" id="err">Something went wrong. Text us or try again.</div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      Handoff · LA Westside Marketplace courier · Small items POC · No pianos, safes, installs, or big furniture this week.
+    </footer>
+  </div>
+<script>
+const form = document.getElementById('quote-form');
+const ok = document.getElementById('ok');
+const err = document.getElementById('err');
+const btn = document.getElementById('submit');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  ok.style.display = 'none';
+  err.style.display = 'none';
+  btn.disabled = true;
+  const data = Object.fromEntries(new FormData(form).entries());
+  data._subject = 'Handoff quote request';
+  data._template = 'table';
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/handoff@agentmail.to', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('bad status');
+    form.reset();
+    ok.style.display = 'block';
+  } catch (x) {
+    err.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
