@@ -4,90 +4,121 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Handoff — Found it? We'll get it.</title>
-<meta name="description" content="Westside Marketplace pickup for small items. Quote in minutes. Venice, MDR, Santa Monica, Culver, West LA, WeHo."/>
+<meta name="description" content="Westside LA hatch-sized Marketplace delivery. Text or message @texthandoff. Venice, MDR, Santa Monica, Culver, West LA, WeHo."/>
 <style>
   :root {
-    --ink: #0B0D12;
-    --ink-2: #141821;
+    --ink: #0A0A0A;
     --cobalt: #2F5BFF;
     --cobalt-2: #4B73FF;
-    --white: #FFFFFF;
-    --mute: #9AA3B5;
-    --line: #222837;
+    --chalk: #F2F0EB;
+    --mist: #A8A29A;
+    --line: #1F1F1F;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
     font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     background: var(--ink);
-    color: var(--white);
+    color: var(--chalk);
     line-height: 1.45;
   }
   a { color: var(--cobalt-2); }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 28px 20px 80px; }
-  header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; }
-  .logo { font-weight: 700; letter-spacing: -0.03em; font-size: 20px; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 28px 20px 80px; }
+  header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; }
+  .logo { font-weight: 700; letter-spacing: -0.03em; font-size: 20px; color: var(--chalk); }
   .logo span { color: var(--cobalt); }
   .pill {
-    font-size: 12px; color: var(--mute); border: 1px solid var(--line);
+    font-size: 12px; color: var(--mist); border: 1px solid var(--line);
     padding: 6px 10px; border-radius: 999px;
   }
-  .hero { display: grid; gap: 28px; margin-bottom: 40px; }
-  @media (min-width: 860px) {
-    .hero { grid-template-columns: 1.05fr 0.95fr; align-items: start; gap: 40px; }
-  }
   h1 {
-    font-size: clamp(36px, 6vw, 56px);
-    line-height: 1.02; letter-spacing: -0.04em; margin: 0 0 14px;
+    font-size: clamp(40px, 8vw, 64px);
+    line-height: 1.02; letter-spacing: -0.045em; margin: 0 0 16px;
+    color: var(--chalk);
   }
-  .sub { color: var(--mute); font-size: 18px; margin: 0 0 22px; max-width: 34ch; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .sub {
+    color: var(--mist); font-size: 18px; margin: 0 0 28px; max-width: 32ch;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--cobalt); color: #fff; border: 0; text-decoration: none;
+    border-radius: 14px; padding: 14px 22px;
+    font-weight: 650; font-size: 16px; cursor: pointer;
+  }
+  .btn:hover { background: var(--cobalt-2); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #151515; color: var(--chalk); border: 1px solid var(--line); text-decoration: none;
+    border-radius: 14px; padding: 14px 22px;
+    font-weight: 650; font-size: 16px; cursor: pointer;
+  }
+  .btn-secondary:hover { border-color: var(--mist); }
+  .btn-ghost {
+    background: transparent; color: var(--mist); border: 1px solid var(--line);
+    border-radius: 14px; padding: 12px 16px; font-size: 14px; cursor: pointer;
+    text-decoration: none;
+  }
+  .btn-ghost:hover { color: var(--chalk); border-color: var(--mist); }
+  .handle {
+    color: var(--mist); font-size: 14px; margin: 0 0 28px;
+  }
+  .handle a { color: var(--cobalt-2); text-decoration: none; font-weight: 600; }
+  .handle a:hover { text-decoration: underline; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
   .tag {
-    background: var(--ink-2); border: 1px solid var(--line);
-    color: var(--white); font-size: 12px; padding: 6px 10px; border-radius: 999px;
+    background: #111; border: 1px solid var(--line);
+    color: var(--mist); font-size: 12px; padding: 6px 10px; border-radius: 999px;
   }
-  .steps { display: grid; gap: 10px; color: var(--mute); font-size: 14px; }
-  .steps strong { color: var(--white); }
+  .fine { color: var(--mist); font-size: 13px; margin: 0 0 48px; }
+  details.fallback {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+  }
+  details.fallback > summary {
+    cursor: pointer; color: var(--mist); font-size: 14px; list-style: none;
+  }
+  details.fallback > summary::-webkit-details-marker { display: none; }
+  details.fallback > summary::after { content: " ▾"; color: var(--cobalt); }
+  details.fallback[open] > summary { color: var(--chalk); margin-bottom: 14px; }
   .card {
-    background: linear-gradient(180deg, #151a26 0%, #10141d 100%);
+    background: #111;
     border: 1px solid var(--line);
-    border-radius: 20px;
-    padding: 22px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    border-radius: 16px;
+    padding: 18px;
   }
-  .card h2 { margin: 0 0 6px; font-size: 18px; letter-spacing: -0.02em; }
-  .card p.lead { margin: 0 0 18px; color: var(--mute); font-size: 13px; }
-  label { display: block; font-size: 12px; color: var(--mute); margin: 12px 0 6px; }
+  .card h2 { margin: 0 0 4px; font-size: 16px; letter-spacing: -0.02em; }
+  .card p.lead { margin: 0 0 14px; color: var(--mist); font-size: 13px; }
+  label { display: block; font-size: 12px; color: var(--mist); margin: 10px 0 5px; }
   input, select, textarea {
     width: 100%;
     background: var(--ink);
     border: 1px solid var(--line);
-    color: var(--white);
+    color: var(--chalk);
     border-radius: 12px;
-    padding: 12px 12px;
+    padding: 11px 12px;
     font: inherit;
   }
   input:focus, select:focus, textarea:focus {
     outline: 2px solid rgba(47,91,255,.45);
     border-color: var(--cobalt);
   }
-  .row { display: grid; gap: 12px; }
+  .row { display: grid; gap: 10px; }
   @media (min-width: 560px) { .row.two { grid-template-columns: 1fr 1fr; } }
-  .btn {
-    margin-top: 18px; width: 100%;
+  .btn-submit {
+    margin-top: 14px; width: 100%;
     background: var(--cobalt); color: white; border: 0;
-    border-radius: 14px; padding: 14px 16px;
+    border-radius: 14px; padding: 13px 16px;
     font-weight: 650; font-size: 15px; cursor: pointer;
   }
-  .btn:hover { background: var(--cobalt-2); }
-  .btn:disabled { opacity: .55; cursor: wait; }
-  .fine { margin-top: 12px; color: var(--mute); font-size: 12px; }
+  .btn-submit:hover { background: var(--cobalt-2); }
+  .btn-submit:disabled { opacity: .55; cursor: wait; }
   .ok, .err {
-    display: none; margin-top: 14px; padding: 12px; border-radius: 12px; font-size: 14px;
+    display: none; margin-top: 12px; padding: 11px; border-radius: 12px; font-size: 14px;
   }
   .ok { background: rgba(47,91,255,.15); border: 1px solid rgba(47,91,255,.4); }
   .err { background: rgba(255,80,80,.12); border: 1px solid rgba(255,80,80,.35); }
-  footer { margin-top: 56px; color: var(--mute); font-size: 12px; border-top: 1px solid var(--line); padding-top: 18px; }
+  footer { margin-top: 48px; color: var(--mist); font-size: 12px; border-top: 1px solid var(--line); padding-top: 18px; }
 </style>
 </head>
 <body>
@@ -97,33 +128,38 @@
       <div class="pill">Westside · Small only</div>
     </header>
 
-    <section class="hero">
-      <div>
-        <h1>Found it?<br/>We'll get it.</h1>
-        <p class="sub">Marketplace pickup for small stuff that fits a sedan or hatch. You buy it. We bring it.</p>
-        <div class="tags">
-          <span class="tag">Venice</span>
-          <span class="tag">Marina del Rey</span>
-          <span class="tag">Santa Monica</span>
-          <span class="tag">Culver City</span>
-          <span class="tag">West LA</span>
-          <span class="tag">WeHo</span>
-        </div>
-        <div class="steps">
-          <div><strong>1.</strong> Paste the listing and your ZIPs</div>
-          <div><strong>2.</strong> We text a quote (usually under an hour daytime)</div>
-          <div><strong>3.</strong> Pay the link. We pick up from the seller and drop it off</div>
-        </div>
-      </div>
+    <h1>Found it?<br/>We'll get it.</h1>
+    <p class="sub">Westside LA · hatch-sized Marketplace delivery</p>
 
-      <div class="card" id="quote">
-        <h2>Get a quote</h2>
-        <p class="lead">Small items only: nightstand, chair, small table, bike, hatchback-sized. No couches or dressers this week.</p>
+    <div class="cta-row">
+      <!-- TEL TBD: replace PHONE_TBD with real digits, e.g. sms:+13105551234 -->
+      <a class="btn" id="text-us" href="sms:PHONE_TBD&body=Hi%20Handoff%20%E2%80%94%20I%20have%20a%20Marketplace%20pickup">Text us</a>
+      <a class="btn-secondary" id="message-us" href="https://ig.me/m/texthandoff" target="_blank" rel="noopener">Message us</a>
+      <a class="btn-ghost" href="#quote">Or request a quote</a>
+    </div>
+    <p class="handle">Instagram &amp; Facebook: <a href="https://instagram.com/texthandoff" target="_blank" rel="noopener">@texthandoff</a> · paste your Marketplace link</p>
+
+    <div class="tags">
+      <span class="tag">Venice</span>
+      <span class="tag">Marina del Rey</span>
+      <span class="tag">Santa Monica</span>
+      <span class="tag">Culver City</span>
+      <span class="tag">West LA</span>
+      <span class="tag">WeHo</span>
+    </div>
+
+    <p class="fine">You buy it. Message us the Marketplace listing. We pick up from the seller and drop it off. Sedan/hatch sized only.</p>
+
+    <details class="fallback" id="quote">
+      <summary>Prefer a short form instead?</summary>
+      <div class="card">
+        <h2>Quick quote</h2>
+        <p class="lead">We'll text you back. Small items only — no couches or dressers this week.</p>
         <form id="quote-form">
           <label for="name">First name *</label>
           <input id="name" name="name" required autocomplete="given-name"/>
 
-          <label for="phone">Phone (for quote text) *</label>
+          <label for="phone">Phone *</label>
           <input id="phone" name="phone" type="tel" required placeholder="310…" autocomplete="tel"/>
 
           <label for="listing">Marketplace listing URL *</label>
@@ -140,7 +176,7 @@
             </div>
           </div>
 
-          <label for="item_type">Item type *</label>
+          <label for="item_type">Item *</label>
           <select id="item_type" name="item_type" required>
             <option value="">Select…</option>
             <option>Nightstand</option>
@@ -151,61 +187,19 @@
             <option>Other small (must fit a sedan/hatch)</option>
           </select>
 
-          <label for="description">Short description *</label>
-          <input id="description" name="description" required placeholder="Color, brand, anything awkward"/>
-
-          <label for="photos">Photo links *</label>
-          <input id="photos" name="photo_links" required placeholder="Listing screenshots or Drive / iCloud links"/>
-
-          <label for="dims">Approx dimensions *</label>
-          <input id="dims" name="dims" required placeholder="L x W x H inches, or unsure"/>
-
-          <div class="row two">
-            <div>
-              <label for="stairs_pickup">Stairs at pickup *</label>
-              <select id="stairs_pickup" name="stairs_pickup" required>
-                <option value="">Select…</option>
-                <option>None</option>
-                <option>Elevator</option>
-                <option>1 flight</option>
-                <option>2+ flights</option>
-              </select>
-            </div>
-            <div>
-              <label for="stairs_delivery">Stairs at delivery *</label>
-              <select id="stairs_delivery" name="stairs_delivery" required>
-                <option value="">Select…</option>
-                <option>None</option>
-                <option>Elevator</option>
-                <option>1 flight</option>
-                <option>2+ flights</option>
-              </select>
-            </div>
-          </div>
-
-          <label for="window">Preferred window *</label>
-          <select id="window" name="window" required>
-            <option value="">Select…</option>
-            <option>Today AM</option>
-            <option>Today PM</option>
-            <option>Tomorrow AM</option>
-            <option>Tomorrow PM</option>
-            <option>Flexible</option>
-          </select>
-
           <label for="notes">Notes</label>
-          <textarea id="notes" name="notes" rows="3" placeholder="Gate codes, seller only free after 6…"></textarea>
+          <textarea id="notes" name="notes" rows="2" placeholder="Dims, stairs, timing…"></textarea>
 
-          <button class="btn" type="submit" id="submit">Request quote</button>
-          <p class="fine">We'll text you. Pay before we dispatch. From: handoff@agentmail.to</p>
-          <div class="ok" id="ok">Got it. Watch your phone for a quote.</div>
-          <div class="err" id="err">Something went wrong. Text us or try again.</div>
+          <button class="btn-submit" type="submit" id="submit">Request quote</button>
+          <p class="fine" style="margin-top:10px;margin-bottom:0">Goes to handoff@agentmail.to · or just DM <a href="https://instagram.com/texthandoff" target="_blank" rel="noopener">@texthandoff</a></p>
+          <div class="ok" id="ok">Got it. Watch your phone.</div>
+          <div class="err" id="err">Something went wrong. Text or message @texthandoff instead.</div>
         </form>
       </div>
-    </section>
+    </details>
 
     <footer>
-      Handoff · LA Westside Marketplace courier · Small items POC · No pianos, safes, installs, or big furniture this week.
+      Handoff · @texthandoff · LA Westside Marketplace courier · Small items POC
     </footer>
   </div>
 <script>
