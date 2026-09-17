@@ -3,231 +3,133 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Handoff — Found it? We'll get it.</title>
-<meta name="description" content="Westside LA hatch-sized Marketplace delivery. Text or message @texthandoff. Venice, MDR, Santa Monica, Culver, West LA, WeHo."/>
-<style>
-  :root {
-    --ink: #0A0A0A;
-    --cobalt: #2F5BFF;
-    --cobalt-2: #4B73FF;
-    --chalk: #F2F0EB;
-    --mist: #A8A29A;
-    --line: #1F1F1F;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    background: var(--ink);
-    color: var(--chalk);
-    line-height: 1.45;
-  }
-  a { color: var(--cobalt-2); }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 28px 20px 80px; }
-  header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; }
-  .logo { font-weight: 700; letter-spacing: -0.03em; font-size: 20px; color: var(--chalk); }
-  .logo span { color: var(--cobalt); }
-  .pill {
-    font-size: 12px; color: var(--mist); border: 1px solid var(--line);
-    padding: 6px 10px; border-radius: 999px;
-  }
-  h1 {
-    font-size: clamp(40px, 8vw, 64px);
-    line-height: 1.02; letter-spacing: -0.045em; margin: 0 0 16px;
-    color: var(--chalk);
-  }
-  .sub {
-    color: var(--mist); font-size: 18px; margin: 0 0 28px; max-width: 32ch;
-  }
-  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px; }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    background: var(--cobalt); color: #fff; border: 0; text-decoration: none;
-    border-radius: 14px; padding: 14px 22px;
-    font-weight: 650; font-size: 16px; cursor: pointer;
-  }
-  .btn:hover { background: var(--cobalt-2); }
-  .btn-secondary {
-    display: inline-flex; align-items: center; justify-content: center;
-    background: #151515; color: var(--chalk); border: 1px solid var(--line); text-decoration: none;
-    border-radius: 14px; padding: 14px 22px;
-    font-weight: 650; font-size: 16px; cursor: pointer;
-  }
-  .btn-secondary:hover { border-color: var(--mist); }
-  .btn-ghost {
-    background: transparent; color: var(--mist); border: 1px solid var(--line);
-    border-radius: 14px; padding: 12px 16px; font-size: 14px; cursor: pointer;
-    text-decoration: none;
-  }
-  .btn-ghost:hover { color: var(--chalk); border-color: var(--mist); }
-  .handle {
-    color: var(--mist); font-size: 14px; margin: 0 0 28px;
-  }
-  .handle a { color: var(--cobalt-2); text-decoration: none; font-weight: 600; }
-  .handle a:hover { text-decoration: underline; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
-  .tag {
-    background: #111; border: 1px solid var(--line);
-    color: var(--mist); font-size: 12px; padding: 6px 10px; border-radius: 999px;
-  }
-  .fine { color: var(--mist); font-size: 13px; margin: 0 0 48px; }
-  details.fallback {
-    border-top: 1px solid var(--line);
-    padding-top: 20px;
-  }
-  details.fallback > summary {
-    cursor: pointer; color: var(--mist); font-size: 14px; list-style: none;
-  }
-  details.fallback > summary::-webkit-details-marker { display: none; }
-  details.fallback > summary::after { content: " ▾"; color: var(--cobalt); }
-  details.fallback[open] > summary { color: var(--chalk); margin-bottom: 14px; }
-  .card {
-    background: #111;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 18px;
-  }
-  .card h2 { margin: 0 0 4px; font-size: 16px; letter-spacing: -0.02em; }
-  .card p.lead { margin: 0 0 14px; color: var(--mist); font-size: 13px; }
-  label { display: block; font-size: 12px; color: var(--mist); margin: 10px 0 5px; }
-  input, select, textarea {
-    width: 100%;
-    background: var(--ink);
-    border: 1px solid var(--line);
-    color: var(--chalk);
-    border-radius: 12px;
-    padding: 11px 12px;
-    font: inherit;
-  }
-  input:focus, select:focus, textarea:focus {
-    outline: 2px solid rgba(47,91,255,.45);
-    border-color: var(--cobalt);
-  }
-  .row { display: grid; gap: 10px; }
-  @media (min-width: 560px) { .row.two { grid-template-columns: 1fr 1fr; } }
-  .btn-submit {
-    margin-top: 14px; width: 100%;
-    background: var(--cobalt); color: white; border: 0;
-    border-radius: 14px; padding: 13px 16px;
-    font-weight: 650; font-size: 15px; cursor: pointer;
-  }
-  .btn-submit:hover { background: var(--cobalt-2); }
-  .btn-submit:disabled { opacity: .55; cursor: wait; }
-  .ok, .err {
-    display: none; margin-top: 12px; padding: 11px; border-radius: 12px; font-size: 14px;
-  }
-  .ok { background: rgba(47,91,255,.15); border: 1px solid rgba(47,91,255,.4); }
-  .err { background: rgba(255,80,80,.12); border: 1px solid rgba(255,80,80,.35); }
-  footer { margin-top: 48px; color: var(--mist); font-size: 12px; border-top: 1px solid var(--line); padding-top: 18px; }
-</style>
+<title>Handoff. You sell it. We deliver it.</title>
+<meta name="description" content="Handoff is the API (and MCP) that lets agents book Westside Marketplace hauls. Not a consumer booking app."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
   <div class="wrap">
-    <header>
-      <div class="logo">Hand<span>off</span></div>
-      <div class="pill">Westside · Small only</div>
+    <header class="site">
+      <a class="logo" href="index.html">Hand<span>off</span></a>
+      <nav class="site" aria-label="Primary">
+        <a href="#how-it-works">How it works</a>
+        <a href="#agents">For agents</a>
+        <a href="docs.html">Public docs</a>
+        <a href="#access">Request access</a>
+      </nav>
     </header>
 
-    <h1>Found it?<br/>We'll get it.</h1>
-    <p class="sub">Westside LA · hatch-sized Marketplace delivery</p>
+    <main id="main">
+      <section class="hero">
+        <p class="eyebrow">Los Angeles · Marketplace delivery for agents</p>
+        <h1>You sell it. We deliver it.</h1>
+        <p class="sub">Handoff is the API (and MCP) that lets agents book Westside Marketplace hauls. Not a consumer booking app.</p>
+        <div class="cta-row">
+          <a class="btn" href="#access">Request API access</a>
+          <a class="btn-secondary" href="#agents">How it works for agents</a>
+        </div>
+        <p class="note"><strong>This site is marketing only.</strong> Quotes and jobs run through Handoff <code>/v1</code>. No checkout here.</p>
+      </section>
 
-    <div class="cta-row">
-      <a class="btn" id="text-us" href="sms:+16282647754?body=Hi%20Handoff%20%E2%80%94%20paste%20your%20Marketplace%20link">Text us</a>
-      <a class="btn-secondary" id="message-us" href="https://ig.me/m/texthandoff" target="_blank" rel="noopener">Message us</a>
-      <a class="btn-ghost" href="#quote">Or request a quote</a>
-    </div>
-    <p class="handle">Instagram &amp; Facebook: <a href="https://instagram.com/texthandoff" target="_blank" rel="noopener">@texthandoff</a> · paste your Marketplace link</p>
+      <section class="section" id="how-it-works">
+        <h2>How a haul gets booked</h2>
+        <p class="lead">Handoff is the LA Marketplace delivery API for agents. Sellers list, agents book the haul, Westside stays the focus.</p>
+        <ol class="steps three">
+          <li class="step">
+            <p class="num">01</p>
+            <h3>You list as usual</h3>
+            <p>Sellers post on Marketplace the way they already do. Handoff does not become the storefront.</p>
+          </li>
+          <li class="step">
+            <p class="num">02</p>
+            <h3>An agent requests a quote</h3>
+            <p>A partner or agent asks Handoff for a quote through the API. Pricing does not live on this page.</p>
+          </li>
+          <li class="step">
+            <p class="num">03</p>
+            <h3>A courier moves it</h3>
+            <p>Pickup and drop-off stay on the Westside. Humans still haul while supply stays small.</p>
+          </li>
+        </ol>
+        <p class="fine">Small and hatch-sized first: nightstands, chairs, bikes, and other stuff that fits a hatchback.</p>
+      </section>
 
-    <div class="tags">
-      <span class="tag">Venice</span>
-      <span class="tag">Marina del Rey</span>
-      <span class="tag">Santa Monica</span>
-      <span class="tag">Culver City</span>
-      <span class="tag">West LA</span>
-      <span class="tag">WeHo</span>
-    </div>
+      <section class="section" id="agents">
+        <h2>Give your agent hands.</h2>
+        <p class="lead">Builders get a private key, then call Handoff. This is not a consumer booking loop and not a driver signup page.</p>
+        <ol class="steps three">
+          <li class="step">
+            <p class="num">01</p>
+            <h3>Request access</h3>
+            <p>Use the form below or email <a href="mailto:handoff@agentmail.to?subject=Request%20API%20access">handoff@agentmail.to</a>.</p>
+          </li>
+          <li class="step">
+            <p class="num">02</p>
+            <h3>Get a private key</h3>
+            <p>Ops sends an opaque API key privately. Keys are never pasted on this site.</p>
+          </li>
+          <li class="step">
+            <p class="num">03</p>
+            <h3>Call /v1 or MCP</h3>
+            <p>Quote, create, observe, and cancel jobs, or connect the MCP tools from the <a href="docs.html">public docs</a>.</p>
+          </li>
+        </ol>
+        <p class="fine">Marketing-level tools</p>
+        <ul class="tools">
+          <li>quote</li>
+          <li>create</li>
+          <li>observe</li>
+          <li>cancel</li>
+        </ul>
+      </section>
 
-    <p class="fine">You buy it. Message us the Marketplace listing. We pick up from the seller and drop it off. Sedan/hatch sized only.</p>
+      <section class="section" id="access">
+        <h2>Request API access</h2>
+        <p class="lead">We’ll reply with API access. No SLA on this page. No payment fields.</p>
+        <div class="card">
+          <form id="access-form">
+            <label for="name">Name</label>
+            <input id="name" name="name" autocomplete="name" required/>
 
-    <details class="fallback" id="quote">
-      <summary>Prefer a short form instead?</summary>
-      <div class="card">
-        <h2>Quick quote</h2>
-        <p class="lead">We'll text you back. Small items only — no couches or dressers this week.</p>
-        <form id="quote-form">
-          <label for="name">First name *</label>
-          <input id="name" name="name" required autocomplete="given-name"/>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required/>
 
-          <label for="phone">Phone *</label>
-          <input id="phone" name="phone" type="tel" required placeholder="310…" autocomplete="tel"/>
+            <label for="note">What you’re building</label>
+            <textarea id="note" name="note" rows="3" placeholder="Agent, partner, or internal tool"></textarea>
 
-          <label for="listing">Marketplace listing URL *</label>
-          <input id="listing" name="listing_url" type="url" required placeholder="https://facebook.com/marketplace/…"/>
-
-          <div class="row two">
-            <div>
-              <label for="pickup_zip">Pickup ZIP *</label>
-              <input id="pickup_zip" name="pickup_zip" required pattern="[0-9]{5}" maxlength="5"/>
+            <div class="cta-row" style="margin-top:16px;margin-bottom:0">
+              <button class="btn" type="submit">Request API access</button>
+              <a class="btn-secondary" href="mailto:handoff@agentmail.to?subject=Request%20API%20access">Email instead</a>
             </div>
-            <div>
-              <label for="delivery_zip">Delivery ZIP *</label>
-              <input id="delivery_zip" name="delivery_zip" required pattern="[0-9]{5}" maxlength="5"/>
-            </div>
-          </div>
+            <p class="ok" id="ok">Your mail client should open next. We’ll reply with API access. No payment and no promised turnaround.</p>
+          </form>
+        </div>
+      </section>
+    </main>
 
-          <label for="item_type">Item *</label>
-          <select id="item_type" name="item_type" required>
-            <option value="">Select…</option>
-            <option>Nightstand</option>
-            <option>Chair</option>
-            <option>Small table</option>
-            <option>Bike or sports</option>
-            <option>Boxes or misc</option>
-            <option>Other small (must fit a sedan/hatch)</option>
-          </select>
-
-          <label for="notes">Notes</label>
-          <textarea id="notes" name="notes" rows="2" placeholder="Dims, stairs, timing…"></textarea>
-
-          <button class="btn-submit" type="submit" id="submit">Request quote</button>
-          <p class="fine" style="margin-top:10px;margin-bottom:0">Goes to handoff@agentmail.to · or just DM <a href="https://instagram.com/texthandoff" target="_blank" rel="noopener">@texthandoff</a></p>
-          <div class="ok" id="ok">Got it. Watch your phone.</div>
-          <div class="err" id="err">Something went wrong. Text or message @texthandoff instead.</div>
-        </form>
-      </div>
-    </details>
-
-    <footer>
-      Handoff · @texthandoff · LA Westside Marketplace courier · Small items POC
+    <footer class="site">
+      <p>Handoff · Westside LA · Speckit-built Delivery API</p>
+      <p>Contact <a href="mailto:handoff@agentmail.to">handoff@agentmail.to</a>. This is marketing, not checkout.</p>
     </footer>
   </div>
 <script>
-const form = document.getElementById('quote-form');
-const ok = document.getElementById('ok');
-const err = document.getElementById('err');
-const btn = document.getElementById('submit');
-form.addEventListener('submit', async (e) => {
+const form = document.getElementById("access-form");
+const ok = document.getElementById("ok");
+form.addEventListener("submit", function (e) {
   e.preventDefault();
-  ok.style.display = 'none';
-  err.style.display = 'none';
-  btn.disabled = true;
-  const data = Object.fromEntries(new FormData(form).entries());
-  data._subject = 'Handoff quote request';
-  data._template = 'table';
-  try {
-    const res = await fetch('https://formsubmit.co/ajax/handoff@agentmail.to', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    if (!res.ok) throw new Error('bad status');
-    form.reset();
-    ok.style.display = 'block';
-  } catch (x) {
-    err.style.display = 'block';
-  } finally {
-    btn.disabled = false;
-  }
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const note = document.getElementById("note").value.trim();
+  const subject = encodeURIComponent("Request API access");
+  const body = encodeURIComponent(
+    "Name: " + name + "\nEmail: " + email + "\nWhat I'm building: " + note
+  );
+  window.location.href = "mailto:handoff@agentmail.to?subject=" + subject + "&body=" + body;
+  ok.classList.add("show");
 });
 </script>
 </body>
