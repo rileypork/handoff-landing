@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Handoff public docs. API and MCP for agents.</title>
+<meta name="description" content="Public Handoff docs for agents: request access, then quote, create, observe, and cancel Marketplace hauls on /v1 or MCP."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap">
+    <header class="site">
+      <a class="logo" href="index.html">Hand<span>off</span></a>
+      <nav class="site" aria-label="Primary">
+        <a href="index.html#how-it-works">How it works</a>
+        <a href="index.html#agents">For agents</a>
+        <a href="docs.html" aria-current="page">Public docs</a>
+        <a href="index.html#access">Request access</a>
+      </nav>
+    </header>
+
+    <main id="main" class="docs">
+      <p class="eyebrow">Public docs · no secrets</p>
+      <h1>API and MCP for agents</h1>
+      <p class="sub">Handoff’s product is the authenticated Delivery API. MCP is a thin tool wrap over the same <code>/v1</code> jobs. This page is public and marketing-safe. Live hosts and keys are sent privately after access.</p>
+      <p class="note"><strong>Not a consumer app.</strong> There is no booking form, checkout, or live pricing here. Quotes and jobs run through <code>/v1</code>.</p>
+
+      <section class="section" style="border-top:0;padding-top:28px">
+        <h2>Get access</h2>
+        <ol class="steps three">
+          <li class="step">
+            <p class="num">01</p>
+            <h3>Request access</h3>
+            <p>Email <a href="mailto:handoff@agentmail.to?subject=Request%20API%20access">handoff@agentmail.to</a> or use the <a href="index.html#access">request form</a>.</p>
+          </li>
+          <li class="step">
+            <p class="num">02</p>
+            <h3>Receive a private key</h3>
+            <p>Ops mints an opaque account-scoped key and sends it privately. Do not put keys in frontend env.</p>
+          </li>
+          <li class="step">
+            <p class="num">03</p>
+            <h3>Call the product</h3>
+            <p>Use <code>/v1</code> directly, or connect MCP tools once you have a key and the private base URL.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h2>Tools</h2>
+        <p class="lead">Marketing names first. After access, the same four jobs exist on REST and MCP.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Job</th>
+              <th>What it does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>quote</code></td>
+              <td>Ask Handoff for a haul quote. Pricing comes from the API, not this site.</td>
+            </tr>
+            <tr>
+              <td><code>create</code></td>
+              <td>Book a delivery after a quote. Use an idempotency key on create.</td>
+            </tr>
+            <tr>
+              <td><code>observe</code></td>
+              <td>Read delivery status and events.</td>
+            </tr>
+            <tr>
+              <td><code>cancel</code></td>
+              <td>Request a cancellation on an open job.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="fine">This landing does not proxy <code>/v1</code>. It does not publish seed keys, peppers, or private base URLs.</p>
+      </section>
+
+      <div class="cta-row">
+        <a class="btn" href="index.html#access">Request API access</a>
+        <a class="btn-secondary" href="index.html">Back to Handoff</a>
+      </div>
+    </main>
+
+    <footer class="site">
+      <p>Handoff · Westside LA · Speckit-built Delivery API</p>
+      <p>Contact <a href="mailto:handoff@agentmail.to">handoff@agentmail.to</a>.</p>
+    </footer>
+  </div>
+</body>
+</html>
